@@ -6,7 +6,7 @@ from .views import CardViewSet, RatingViewSet
 
 router = routers.DefaultRouter()
 router.register('cards', CardViewSet)
-router.register('Ratings', RatingViewSet)
+router.register('ratings', RatingViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
