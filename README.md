@@ -10,11 +10,11 @@
 
 1. Generate virtualenv
 
-    `python3 -m venv env`
+    `python3 -m venv venv`
 
 2. Activate venv
 
-    `source env/bin/activate`
+    `source venv/bin/activate`
 
 3. Install required Python packages using pip and requirements.txt  
 
@@ -23,7 +23,15 @@
 4. Install Django and start database if starting from scratch
 
     `pip install Django`
+    
+    `pip install Djangorestframework`
+    
+    `python -m pip install django-cors-headers`
+    
+    `django-admin startproject spirovanni .`
+    
     `django-admin startapp api`
+    
     `python manage.py migrate`
     
 4. Create database
