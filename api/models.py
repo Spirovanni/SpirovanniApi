@@ -9,6 +9,10 @@ class Card(models.Model):
 
 
 class Rating(models.Model):
-    movie = models.ForeignKey(Card, on_delete=models.CASCADE)
+    card = models.ForeignKey(Card, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     stars = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+
+    class Meta:
+        unique_together = (('user', 'card'),)
+        index_together = (('user', 'card'),)
