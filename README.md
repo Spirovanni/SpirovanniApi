@@ -26,7 +26,7 @@
     
     `pip install Djangorestframework`
     
-    `python -m pip install django-cors-headers`
+    `pip install django-cors-headers`
     
     `django-admin startproject spirovanni .`
     
