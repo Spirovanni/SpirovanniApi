@@ -1,6 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.authentication import TokenAuthentication
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from .models import Card, Rating
@@ -10,6 +11,7 @@ from .serializers import CardSerializer, RatingSerializer, UserSerializer
 class CardViewSet(viewsets.ModelViewSet):
     queryset = Card.objects.all()
     serializer_class = CardSerializer
+    authentication_classes = (TokenAuthentication,)
 
     @action(detail=True, methods=['POST'])
     def rate_card(self, request, pk=None):
@@ -17,8 +19,8 @@ class CardViewSet(viewsets.ModelViewSet):
 
             card = Card.objects.get(id=pk)
             stars = request.data['stars']
-            # user = request.user
-            user = User.objects.get(id=1)
+            user = request.user
+            # user = User.objects.get(id=1)
             print('user', user.username)
 
             try:
@@ -42,3 +44,4 @@ class CardViewSet(viewsets.ModelViewSet):
 class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
     serializer_class = RatingSerializer
+    authentication_classes = (TokenAuthentication,)
