@@ -21,8 +21,19 @@ class CardViewSet(viewsets.ModelViewSet):
             user = User.objects.get(id=1)
             print('user', user.username)
 
-            response = {'message': 'Its working'}
-            return Response(response, status=status.HTTP_202_ACCEPTED)
+            try:
+                rating = Rating.objects.get(user=user.id, card=card.id)
+                rating.stars = stars
+                rating.save()
+                serializer = RatingSerializer(rating, many=False)
+                response = {'message': 'Rating updated', 'result': serializer.data}
+                return Response(response, status=status.HTTP_200_OK)
+            except:
+                rating = Rating.objects.create(user=user, card=card, stars=stars)
+                serializer = RatingSerializer(rating, many=False)
+                response = {'message': 'Rating created', 'result': serializer.data}
+                return Response(response, status=status.HTTP_200_OK)
+
         else:
             response = {'message': 'You need to provide stars'}
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
