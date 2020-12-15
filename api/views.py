@@ -8,10 +8,15 @@ from .models import Card, Rating
 from .serializers import CardSerializer, RatingSerializer, UserSerializer
 
 
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
 class CardViewSet(viewsets.ModelViewSet):
     queryset = Card.objects.all()
     serializer_class = CardSerializer
-    authentication_classes = (TokenAuthentication,)
+    authentication_classes = (TokenAuthentication, )
 
     @action(detail=True, methods=['POST'])
     def rate_card(self, request, pk=None):
@@ -20,8 +25,6 @@ class CardViewSet(viewsets.ModelViewSet):
             card = Card.objects.get(id=pk)
             stars = request.data['stars']
             user = request.user
-            # user = User.objects.get(id=1)
-            print('user', user.username)
 
             try:
                 rating = Rating.objects.get(user=user.id, card=card.id)
@@ -30,6 +33,7 @@ class CardViewSet(viewsets.ModelViewSet):
                 serializer = RatingSerializer(rating, many=False)
                 response = {'message': 'Rating updated', 'result': serializer.data}
                 return Response(response, status=status.HTTP_200_OK)
+
             except:
                 rating = Rating.objects.create(user=user, card=card, stars=stars)
                 serializer = RatingSerializer(rating, many=False)
@@ -44,4 +48,4 @@ class CardViewSet(viewsets.ModelViewSet):
 class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
     serializer_class = RatingSerializer
-    authentication_classes = (TokenAuthentication,)
+    authentication_classes = (TokenAuthentication, )
