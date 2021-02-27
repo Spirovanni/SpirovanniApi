@@ -10,7 +10,7 @@
 
 1. Generate virtualenv
 
-    `python3 -m venv venv`
+    `python -m venv venv`
 
 2. Activate venv
 
@@ -18,7 +18,7 @@
 
 3. Install required Python packages using pip and requirements.txt  
 
-    `pip3 install -r requirements.txt`
+    `pip install -r requirements.txt`
     
 4. Install Django and start database if starting from scratch
 
@@ -36,16 +36,16 @@
     
 4. Create database
 
-    `python3 manage.py makemigrations`
-    `python3 manage.py migrate`
+    `python manage.py makemigrations`
+    `python manage.py migrate`
 
 5. Load initial data to database using Django fixtures
 
-    `python3 manage.py loaddata fixtures/initial_data.json`
+    `python manage.py loaddata fixtures/initial_data.json`
 
 6. Run App
 
-      `python3 manage.py runserver`
+      `python manage.py runserver`
       
 7. Creating an admin user
 First we’ll need to create a user who can login to the admin site. Run the following command:
