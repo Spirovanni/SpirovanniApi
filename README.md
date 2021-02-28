@@ -67,10 +67,19 @@ First we’ll need to create a user who can login to the admin site. Run the fol
 9. Heroku
 Commands to Update Heroku
    
-    To Migrate Database:
+   GIT Tools:
    
-    `heroku run python manage.py migrate`
-    
-    To Create Super User:
+   `git add .`
+
+   `git commit -m "Description"`
+
+   `git push heroku main`
    
-    `heroku run python manage.py createsuperuser`
+   
+To Migrate Database:
+
+   `heroku run python manage.py migrate`
+
+To Create Super User:
+   
+   `heroku run python manage.py createsuperuser`
