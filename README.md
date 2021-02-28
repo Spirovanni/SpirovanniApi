@@ -34,20 +34,20 @@
     
     `python manage.py migrate`
     
-4. Create database
+5. Create database
 
     `python manage.py makemigrations`
     `python manage.py migrate`
 
-5. Load initial data to database using Django fixtures
+6. Load initial data to database using Django fixtures
 
     `python manage.py loaddata fixtures/initial_data.json`
 
-6. Run App
+7. Run App
 
       `python manage.py runserver`
       
-7. Creating an admin user
+8. Creating an admin user
 First we’ll need to create a user who can login to the admin site. Run the following command:
 
     `$ python3 manage.py createsuperuser`
@@ -63,3 +63,14 @@ First we’ll need to create a user who can login to the admin site. Run the fol
     Password: **********
     Password (again): *********
     Superuser created successfully.
+
+9. Heroku
+Commands to Update Heroku
+   
+    To Migrate Database:
+   
+    `heroku run python manage.py migrate`
+    
+    To Create Super User:
+   
+    `heroku run python manage.py createsuperuser`
