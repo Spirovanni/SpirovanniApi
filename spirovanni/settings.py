@@ -84,10 +84,7 @@ WSGI_APPLICATION = 'spirovanni.wsgi.application'
 default_dburl = 'sqllite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
 
 REST_FRAMEWORK = {
@@ -138,3 +135,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATUS_ROOT = os.path.join(BASE_DIR, 'staticfiles')
