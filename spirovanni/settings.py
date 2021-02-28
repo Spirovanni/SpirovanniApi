@@ -101,7 +101,7 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:4200"
+    "http://localhost:4200", "https://spirovanni-369.web.app/", "https://spirovanni-369.firebaseapp.com/"
 ]
 
 
